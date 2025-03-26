@@ -71,7 +71,25 @@ clf.predict([[0,7,0,95,0,2,8,2,0,0,1,0]])
 ```
 
 ## Output:
-![the Logistic Regression Model to Predict the Placement Status of Student](sam.png)
+![image](https://github.com/user-attachments/assets/c9a78742-ddc5-41d1-b7b3-f8280491a69f)
+
+![image](https://github.com/user-attachments/assets/9e63fb7f-3c59-4a82-b348-6e6299783fe0)
+
+![image](https://github.com/user-attachments/assets/236139aa-b1f7-4803-8a2a-22fa8b609ce5)
+
+![image](https://github.com/user-attachments/assets/a8b61dc2-6d56-4926-a87e-a90ee4bc84e7)
+
+![image](https://github.com/user-attachments/assets/36c1a5ee-c4bb-4a17-9ac4-cd61e30769c7)
+
+![image](https://github.com/user-attachments/assets/372d009e-5990-43b5-a3c8-636654590b96)
+
+![image](https://github.com/user-attachments/assets/583ed21f-47d3-48b2-8e12-eab4b2f139b5)
+
+
+
+
+
+
 
 
 ## Result:
