@@ -7,89 +7,94 @@ To write a program to implement the the Logistic Regression Model to Predict the
 1. Hardware – PCs
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
-## Algorithm
-1. 
-2. 
-3. 
-4. 
+## Algorithm:
+1. Import the required packages.
+2. Print the present data and placement data and salary data.
+3. Using logistic regression find the predicted values of accuracy confusion matrices.
+4. Display the results.
 
 ## Program:
-```
 Program to implement the the Logistic Regression Model to Predict the Placement Status of Student.
-Developed by: Mukesh R 
-RegisterNumber: 212224240098  
-```
 
-```
+Developed by: Mukesh R
+
+RegisterNumber: 212224240098
+
+```python
 import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-dataset=pd.read_csv("Placement_Data.csv")
-dataset
-
-dataset = dataset.drop('sl_no',axis=1)
-dataset = dataset.drop('salary',axis=1)
-
-dataset["gender"] = dataset["gender"].astype('category')
-dataset["ssc_b"]=dataset["ssc_b"].astype('category')
-dataset["hsc_b"]=dataset["hsc_b"].astype('category')
-dataset["degree_t"]=dataset["degree_t"].astype('category')
-dataset["workex"]=dataset["workex"].astype('category')
-dataset["specialisation"]=dataset["specialisation"].astype('category')
-dataset["status"]=dataset["status"].astype('category')
-dataset["hsc_s"]=dataset["hsc_s"].astype('category')
-dataset.dtypes
-
-dataset["gender"] = dataset["gender"].cat.codes
-dataset["ssc_b"] = dataset["ssc_b"].cat.codes
-dataset["hsc_b"] = dataset["hsc_b"].cat.codes
-dataset["hsc_s"] = dataset["hsc_s"].cat.codes
-dataset["degree_t"] = dataset["degree_t"].cat.codes
-dataset["workex"] = dataset["workex"].cat.codes
-dataset["specialisation"] = dataset["specialisation"].cat.codes
-dataset["status"] = dataset["status"].cat.codes
-dataset
-
-X= dataset.iloc[:,:-1].values
-Y= dataset.iloc[:,-1].values
-Y
-
+from sklearn.preprocessing import LabelEncoder
+data = pd.read_csv('Placement_Data.csv')
+data.head()
+data1 = data.copy()
+data1 = data1.drop(["sl_no", "salary"], axis = 1)
+data1.head()
+data1.isnull().sum()
+data1.duplicated().sum()
+le=LabelEncoder()
+data1["gender"] = le.fit_transform(data1["gender"])
+data1["ssc_b"] = le.fit_transform(data1["ssc_b"])
+data1["hsc_b"] = le.fit_transform(data1["hsc_b"])
+data1["hsc_s"] = le.fit_transform(data1["hsc_s"])
+data1["degree_t"] = le.fit_transform(data1["degree_t"])
+data1["workex"] = le.fit_transform(data1["workex"])
+data1["specialisation"] = le.fit_transform(data1["specialisation"])
+data1["status"] = le.fit_transform(data1["status"])
+data1
+x = data1.iloc[:, :-1]
+x
+y = data1["status"]
+y
 from sklearn.model_selection import train_test_split
-X_train,X_test,Y_train,Y_test=train_test_split(X,Y,test_size=0.2,random_state=0)
-dataset.head()
-
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.2, random_state = 0)
 from sklearn.linear_model import LogisticRegression
-clf=LogisticRegression(random_state=0,solver='lbfgs',max_iter=1000).fit(X_train,Y_train)
-clf.score(X_test,Y_test)
-
-clf.predict([[0,87,0,95,0,2,78,2,0,0,1,0]])
-
-clf.predict([[0,7,0,95,0,2,8,2,0,0,1,0]])
-
+lr = LogisticRegression(solver = "liblinear")
+lr.fit(x_train, y_train)
+y_pred = lr.predict(x_test)
+y_pred
+from sklearn.metrics import accuracy_score
+accuracy = accuracy_score(y_test, y_pred)
+accuracy
+from sklearn.metrics import confusion_matrix
+confusion = (y_test, y_pred)
+confusion
+from sklearn.metrics import classification_report
+classification_report1 = classification_report(y_test, y_pred)
+print(classification_report1)
+lr.predict([[1, 80, 1, 90, 1, 1, 90, 1, 0, 85, 1, 85]])
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/c9a78742-ddc5-41d1-b7b3-f8280491a69f)
 
-![image](https://github.com/user-attachments/assets/9e63fb7f-3c59-4a82-b348-6e6299783fe0)
-
-![image](https://github.com/user-attachments/assets/236139aa-b1f7-4803-8a2a-22fa8b609ce5)
-
-![image](https://github.com/user-attachments/assets/a8b61dc2-6d56-4926-a87e-a90ee4bc84e7)
-
-![image](https://github.com/user-attachments/assets/36c1a5ee-c4bb-4a17-9ac4-cd61e30769c7)
-
-![image](https://github.com/user-attachments/assets/372d009e-5990-43b5-a3c8-636654590b96)
-
-![image](https://github.com/user-attachments/assets/583ed21f-47d3-48b2-8e12-eab4b2f139b5)
+### Placement Data
+![image](https://github.com/user-attachments/assets/d3e98296-8a8e-46b0-ad63-6e75d6d1f515)
 
 
+### Checking the null() function
+![image](https://github.com/user-attachments/assets/fa436e8d-4c7b-4cef-bb24-853f88a1f8e1)
 
 
+### Print Data:
+![image](https://github.com/user-attachments/assets/a082633b-ad76-44b2-a532-6e517781f35d)
 
 
+### Y_prediction array
+![image](https://github.com/user-attachments/assets/3ba9b8c1-7d36-4d4d-b1be-ad1f00adf346)
+
+
+### Accuracy value
+![image](https://github.com/user-attachments/assets/fad7f75d-206e-4c58-b009-2e002df23579)
+
+
+### Confusion array
+![image](https://github.com/user-attachments/assets/c0184e01-b15b-47a2-abaf-e03cb84cda6d)
+
+
+### Classification Report
+![image](https://github.com/user-attachments/assets/b5a09fde-7760-42cc-a788-dcfd241bd4ef)
+
+
+### Prediction of LR
+![image](https://github.com/user-attachments/assets/994d90fb-a128-4088-bdb5-899a74a00da7)
 
 
 ## Result:
